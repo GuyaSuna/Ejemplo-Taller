@@ -1,90 +1,79 @@
-import { useState } from "react";
+import {useState , useEffect }from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
-
-
+import {getAllLocales} from "./api/locales/api";
 import "./App.css";
 
+
 function App() {
-  const [usuario, setUsuario] = useState("");
+
+  const [locales , setLocales] = useState([]);
+
   const [password, setPassword] = useState("");
+
   const [mensaje, setMensaje] = useState("");
 
+  const [numero , setNumero] = useState(10);
 
-  const personas = [
-    { id: 1, nombre: "Martín", edad: 15 },
-    { id: 2, nombre: "Sofía", edad: 22 },
-    { id: 3, nombre: "Andrés", edad: 24 },
-  ];
+  const [objPersona , setObjPersona] = useState({id: 1,
+    nombre : "Nahuel"
+  });
 
-  const clases = [
-    {id: 1 , cantidadSillas: 25},
-    {id: 2 , cantidadSillas: 30},
-    {id: 3 , cantidadSillas: 20}
-  ]
+  const [arrPersonas , setArrPersonas] = useState([{id: 1,
+                                        nombre : "Nahuel"
+                                      },
+                                      {id: 2,
+                                        nombre : "Pedro"
+                                      }
+                                    ]);
 
-  const claseSillasPar = clases.find((clase) => clase.cantidadSillas % 2 === 0 ); 
+  const [usuario, setUsuario] = useState("");
 
-  const clasesSillasPar = clases.filter((clase) => clase.cantidadSillas % 2 === 0);
+  const [orden , setOrden] = useState(true);
 
+  const fetchLocales = async() => {
+    const data = await getAllLocales("","","","","","");
+    console.log("FRONT: ",data);
+    setLocales(data);
+  }
 
-
-
-
-
-  const numeroPar = personas.find((per) => per.edad % 2 === 0);
-
-  const edadesFiltradas = personas.filter((per) => per.edad % 2 === 0);
-
-  const edadesTotal = personas.reduce((suma, item) => suma + item.edad, 0);
-
-
+useEffect(() => {
+fetchLocales();
+},[])
 
 
+ useEffect(() => {
+  if(orden){
+    console.log("Menor a Mayor")
+  }else{
+    console.log("Mayor a Menor")
+  }
+
+ } ,[orden])
+ 
 
 
-
-
-const numeros = [1,2,3]
-
-const suma = numeros.reduce((suma , item) => suma + item , 0);
-
-const dobles2 = numeros.map((num) => num * 2 );
-
-
-
-
-
-
-
-
-
-
-
-
-  const dobles = personas.map((per) => (
-    <p key={per.id}>
-      !Hola {per.nombre} , tu edad es de: {per.edad}.
-    </p>
-  ));
-
-  console.log(dobles);
-
-
-
-  const testTaller = (nombre = "Invitado") => console.log(nombre) 
-
-
-
-
+ 
 
   const manejarLogin = () => {
+
+    if(orden){
+      setOrden(false);
+    }else{
+      setOrden(true)
+    }
+
     if (usuario === "" || password === "") {
       setMensaje("Tenés que completar todos los campos");
     } else {
       setMensaje("Presionaste el botón de login");
     }
   };
+
+
+
+
+
 
   return (
     <>
@@ -114,36 +103,6 @@ const dobles2 = numeros.map((num) => num * 2 );
           <Card.Footer className="text-muted">{mensaje}</Card.Footer>
         </Card>
       </div> 
-
-
-
-
-
-
-      {dobles2}
-
-        <br></br>
-
-
-
-      {claseSillasPar.cantidadSillas}
-
-
-      <br></br>
-
-
-        {clasesSillasPar.map((clase) => <div>
-          <h1> {clase.id} </h1>
-          <h2> {clase.cantidadSillas}  </h2>
-        </div>)}
-
-  <br></br>
-
-{suma}
-
-
-
-
 
     </>
   );
