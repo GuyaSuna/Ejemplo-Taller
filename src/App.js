@@ -32,7 +32,7 @@ function App() {
   const [orden , setOrden] = useState(true);
 
   const fetchLocales = async() => {
-    const data = await getAllLocales("","","","","","");
+    const data = await getAllLocales();
     console.log("FRONT: ",data);
     setLocales(data);
   }
