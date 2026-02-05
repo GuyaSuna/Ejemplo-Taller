@@ -42,6 +42,7 @@ fetchLocales();
 },[])
 
 
+
  useEffect(() => {
   if(orden){
     console.log("Menor a Mayor")
@@ -102,6 +103,25 @@ fetchLocales();
           </Card.Body>
           <Card.Footer className="text-muted">{mensaje}</Card.Footer>
         </Card>
+
+
+
+        <div className="lista-locales">
+          {locales.items?.map((local) => 
+            <Card key={local.id} style={{ width: "18rem", margin: "10px" }}>
+              <Card.Body>
+                <Card.Title>{local.name}</Card.Title>
+                <Card.Subtitle className="mb-2 text-muted">
+                  {local.type}
+                </Card.Subtitle>
+                <Card.Text>Ciudad: {local.city}</Card.Text>
+                <Card.Text>Zona: {local.zone}</Card.Text>
+                <Card.Text>Precio: {local.priceRange}</Card.Text>
+                <Card.Text>Rating: {local.ratingAverage < 1 ? "Sin calificar" : local.ratingAverage}</Card.Text>
+              </Card.Body>
+            </Card> 
+          )}
+        </div>
       </div> 
 
     </>
