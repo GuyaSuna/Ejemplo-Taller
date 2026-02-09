@@ -3,6 +3,7 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import SeccionPeriodismo from "./components/SeccionPeriodismo";
 import "./App.css";
+import { BotonLogin } from "./components/BotonLogin";
 
 function App() {
   const [password, setPassword] = useState("");
@@ -24,6 +25,7 @@ function App() {
 
   const ordenarPor = () => {
     orden ? setOrden(false) : setOrden(true);
+    console.log("Ordenar por", orden);
   };
 
   const manejarLogin = () => {
@@ -55,9 +57,7 @@ function App() {
               onChange={(e) => setPassword(e.target.value)}
               className="input"
             />
-            <Button variant="primary" onClick={ordenarPor}>
-              Login
-            </Button>
+            <BotonLogin ordenarPor={ordenarPor} />
           </Card.Body>
           <Card.Footer className="text-muted">{mensaje}</Card.Footer>
         </Card>
