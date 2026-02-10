@@ -1,13 +1,29 @@
-import { useState } from "react";
+import { useState , useEffect} from "react";
 
 const SeccionPeriodismo = () => {
 
     const [nombre , setNombre] = useState("Nahuel");
     const [numero , setNumero] = useState(0);
+    const [boolean , setBoolean] = useState(true);
+    const [listaCompra , setListaCompra] = useState([]);
+    const [persona , setPersona] = useState({});
+    const [listaItems , setListaItems] = useState([
+        {id: 1,
+        nombre : "Pepe"
+    }])
 
 
 
-    console.log(nombre);
+    
+    
+    
+    
+    
+
+
+
+
+
 
 
 

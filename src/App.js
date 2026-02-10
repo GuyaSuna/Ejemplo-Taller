@@ -3,7 +3,6 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import SeccionPeriodismo from "./components/SeccionPeriodismo";
 import "./App.css";
-import { BotonLogin } from "./components/BotonLogin";
 
 function App() {
   const [password, setPassword] = useState("");
@@ -57,7 +56,9 @@ function App() {
               onChange={(e) => setPassword(e.target.value)}
               className="input"
             />
-            <BotonLogin ordenarPor={ordenarPor} />
+               <Button variant="primary" onClick={() => manejarLogin()}>
+             Login
+            </Button>
           </Card.Body>
           <Card.Footer className="text-muted">{mensaje}</Card.Footer>
         </Card>
